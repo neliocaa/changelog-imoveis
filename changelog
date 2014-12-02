@@ -1,12 +1,29 @@
 ___________________________________________________________________________________________
 tpl-add.php
 
-492				$val = preg_replace('/[^0-9]/', '', $val);
+979				// CLEAN SOME ATTRIBUTES
+
+				if(substr($key,0,5) == "preco"){
+
+				$val = preg_replace('/[^0-9]/', '', $val);
+
+				}
+
+//original
+979             // CLEAN SOME ATTRIBUTES
+
+				if(substr($key,0,5) == "price"){
+
+				$val = preg_replace('/[^\da-z.]/i', '', $val);
+
+				}
+
 ___________________________________________________________________________________________
 
 wp_head in Design Setup
 
-<script language="javascript" src="http://127.0.0.1/imoveis/wp-content/themes/RT/templates/template_realestate_theme/jquery.price_format.2.0.js" type="text/javascript"></script>
+<script language="javascript" src="http://imoveis.binnario.com.br/wp-content/themes/RT/templates/template_Binnario/jquery.price_format.2.0.js" type="text/javascript"></script>
+
 <script language="javascript" type="text/javascript">
 //Evita que o formulário seja enviado ao pressionar "Enter"
 function stopEnterSubmitting(e) {
@@ -25,10 +42,22 @@ function stopEnterSubmitting(e) {
 ___________________________________________________________________________________________
 
 wp_footer in Design Setup
-
+<!-- altera mascara no formulario de anuncio -->
 <script language="javascript" type="text/javascript">
 jQuery(function($){
-   $('#reg_field_price').priceFormat({ 
+   $('#reg_field_preco').priceFormat({ 
+    prefix: 'R$ ',
+    centsSeparator: ',',
+    thousandsSeparator: '.',
+    centsLimit: 0
+});
+});
+</script>
+
+<!-- altera mascara na exibição -->
+<script language="javascript" type="text/javascript">
+jQuery(function($){
+   $('.wlt_shortcode_preco').priceFormat({ 
     prefix: 'R$ ',
     centsSeparator: ',',
     thousandsSeparator: '.',
